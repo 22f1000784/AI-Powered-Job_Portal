@@ -1,4 +1,5 @@
-const BASE_URL = "http://127.0.0.1:8080/api/v1";
+import { API_BASE_URL } from "../utils/api";
+const BASE_URL = `${API_BASE_URL}/api/v1`;
 
 export const getAdminDashboardStats = async () => {
   const token = localStorage.getItem("token");

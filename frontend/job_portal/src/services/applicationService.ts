@@ -1,4 +1,5 @@
-const BASE_URL = "http://127.0.0.1:8080/api/v1";
+import { API_BASE_URL } from "../utils/api";
+const BASE_URL = `${API_BASE_URL}/api/v1`;
 
 export const getApplications = async () => {
   const token = localStorage.getItem("token");
@@ -16,7 +17,7 @@ export const getApplications = async () => {
 
 export const getJobApplicants = async (jobId: string) => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://127.0.0.1:8080/api/v1/jobs/${jobId}/applicants`, {
+  const res = await fetch(`${BASE_URL}/jobs/${jobId}/applicants`, {
     headers: { 
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}` 
@@ -29,7 +30,7 @@ export const getJobApplicants = async (jobId: string) => {
 export const updateApplicationStatus = async (applicationId: string, status: string) => {
   const token = localStorage.getItem("token");
   
-  const res = await fetch(`http://127.0.0.1:8080/api/v1/applications/${applicationId}/status`, {
+  const res = await fetch(`${BASE_URL}/applications/${applicationId}/status`, {
     method: "PATCH", 
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +49,7 @@ export const updateApplicationStatus = async (applicationId: string, status: str
 
 export const getAllShortlisted = async () => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://127.0.0.1:8080/api/v1/applications/shortlisted/all`, {
+  const res = await fetch(`${BASE_URL}/applications/shortlisted/all`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return res.json();
