@@ -1,0 +1,12 @@
+{
+  "name": "job-portal-monolith",
+  "version": "1.0.0",
+  "description": "AI-Powered Job Matching Portal Monolith",
+  "scripts": {
+    "install:all": "npm install --prefix back_end && npm install --prefix frontend/job_portal",
+    "build:frontend": "npm run build --prefix frontend/job_portal",
+    "build:backend": "npm run build --prefix back_end",
+    "build": "npm run build:frontend && npm run build:backend",
+    "start": "npm start --prefix back_end"
+  }
+}
