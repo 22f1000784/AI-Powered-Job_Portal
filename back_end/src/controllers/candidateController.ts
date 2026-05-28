@@ -105,7 +105,9 @@ export const updateCandidateProfile = async (
     const dataBuffer = fs.readFileSync(file.path);
     const data = await pdf(dataBuffer);
     resumeText = data.text;
-    resumePath = file.path;
+    // Store as "uploads/filename" for consistent URL construction
+    const filename = require("path").basename(file.path);
+    resumePath = `uploads/${filename}`;
 }
 
     candidate.fullName = body.fullName ?? candidate.fullName;

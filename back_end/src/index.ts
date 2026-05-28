@@ -47,12 +47,13 @@ const server = new Server();
   server.app.use("/api/v1", v1Routes);
   
   // Serve user uploads statically
-  server.app.use("/uploads", express.static(path.join(__dirname, "../uploads"), {
+  const uploadsPath = path.resolve(process.cwd(), "uploads");
+  console.log("📂 Serving uploads from:", uploadsPath);
+  server.app.use("/uploads", express.static(uploadsPath, {
     setHeaders: (res, filePath) => {
-      const filename = path.basename(filePath);
-      if (!filename.includes(".")) {
+      if (filePath.endsWith(".pdf")) {
         res.setHeader("Content-Type", "application/pdf");
-        res.setHeader("Content-Disposition", "inline; filename=" + filename + ".pdf");
+        res.setHeader("Content-Disposition", "inline");
       }
     }
   }));
